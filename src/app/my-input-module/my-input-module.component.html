@@ -1,4 +1,6 @@
-<div class="form-group">
-  <label for="lblInput{{name}}">{{title}}</label>
-  <input id="lblInput{{name}}" type="text" class="form-control" [placeholder]="placeholder" >
+<div class="form-group" [formGroup]="attachedFormGroup">
+  <label for="lblInput{{name}}">{{title}}</label><span *ngIf="mandatory" style="color: red;"> *</span>
+  <input id="lblInput{{name}}" type="text" class="form-control" [placeholder]="placeholder" [formControlName]="name">
+  <!-- <button (click)="test()">TEST</button> -->
+  <small *ngIf="this.attachedFormGroup.controls[this.name].errors !== null" style="color: red;">{{this.attachedFormGroup.controls[this.name].errors | json}}</small>
 </div>

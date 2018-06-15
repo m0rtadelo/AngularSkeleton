@@ -6,5 +6,7 @@
       <app-address-notification  [attachedFormGroup]="modelForm.get('AddressNotification')"></app-address-notification>
     </tab>
   </tabset>
-  <button class="btn btn-primary" (click)="saveModel()">Save</button>
+  <button *ngIf="modelForm.status === 'VALID'" class="btn btn-primary" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
+  <button *ngIf="modelForm.status !== 'VALID'" class="btn btn-danger" [disabled]="!modelForm.dirty">Save</button>
+  <button class="btn" (click)="cancel()">Cancel</button>
   <button class="btn" (click)="showModel()">Console</button>
