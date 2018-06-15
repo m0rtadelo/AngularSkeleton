@@ -6,7 +6,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './physical-person-modification.component.html',
   styleUrls: ['./physical-person-modification.component.css']
 })
-export class PhysicalPersonModificationComponent extends ProcessViewComponent implements OnInit {
+export class PhysicalPersonModificationComponent implements OnInit {
   public model;
   public modelForm: FormGroup;
 
