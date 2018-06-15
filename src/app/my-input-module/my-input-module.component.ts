@@ -14,17 +14,17 @@ export class MyInputModuleComponent implements OnInit {
   @Input() attachedFormGroup: FormGroup;
   @Input() mandatory = false;
   public formControl = new FormControl();
-  private validators = {};
+  private validators = [];
   private myControl: AbstractControl;
 
   constructor() { }
 
   ngOnInit() {
     if (this.mandatory) {
-      //this.validators.required = (Validators.required);
+      this.validators.push(Validators.required);
     }
     if (!this.attachedFormGroup.contains(this.name)) {
-      this.attachedFormGroup.addControl(this.name, new FormControl(null, [Validators.required, Validators.maxLength(5)]));
+      this.attachedFormGroup.addControl(this.name, new FormControl(null, this.validators));
       this.myControl = this.attachedFormGroup.get(this.name);
     }
   }
