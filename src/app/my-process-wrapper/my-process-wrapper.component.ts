@@ -15,4 +15,7 @@ export class MyProcessWrapperComponent implements OnInit {
   ngOnInit() {
   }
 
+  public saveModel(): void {
+    // TODO: Implementation
+  }
 }

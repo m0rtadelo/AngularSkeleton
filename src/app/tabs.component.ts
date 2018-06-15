@@ -5,9 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './tabs.component.html'
 })
 export class DemoTabsBasicComponent {
-  tab = 1;
-
-  public setTab(item: number): void {
-    this.tab = item;
-  }
 }

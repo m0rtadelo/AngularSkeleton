@@ -12,7 +12,7 @@ export class BindingComponent implements OnInit {
   constructor(private bindingService: BindingService) {}
 
   ngOnInit() {
-    console.log('oninit');
+    // console.log('oninit');
     // this.model = this.bindingService.getValue();
   }
 }

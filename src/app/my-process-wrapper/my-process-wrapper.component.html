@@ -1,12 +1,11 @@
-<p>
-  <tabset>
-    <tab heading="Dades Personals">
-      <app-my-process-view
-        [name]="'personal_data'"
-        [attachedFormGroup]="modelForm.get('personalData')"></app-my-process-view>
-    </tab>
-    <tab heading="Domicili Notificació">
-      <app-my-process-view></app-my-process-view>
-    </tab>
-  </tabset>
-</p>
+<tabset>
+  <tab heading="Dades Personals">
+    <app-my-process-view
+      [title]="'Títol'"
+      [name]="'personal_data'"></app-my-process-view>
+  </tab>
+  <tab heading="Domicili Notificació">
+    <app-my-process-view></app-my-process-view>
+  </tab>
+</tabset>
+<button class="btn btn-primary" (click)="saveModel()">Save</button>
