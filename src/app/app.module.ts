@@ -8,7 +8,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BindingModule } from './binding/binding.module';
 import { BindingService } from './binding/binding.service';
 import { AtxTooltipModule, AtxRateModule } from '@atx/material';
-import { MyProcessWrapperModule } from './my-process-wrapper/my-process-wrapper.module';
+import { PhysicalPersonModificationModule } from './physical-person-modification/physical-person-modification.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { MyProcessWrapperModule } from './my-process-wrapper/my-process-wrapper.
     BindingModule,
     AtxTooltipModule,
     AtxRateModule,
-    MyProcessWrapperModule,
+    PhysicalPersonModificationModule,
     TabsModule.forRoot()
   ],
   providers: [BindingService],
