@@ -1,9 +1,10 @@
 <tabset>
     <tab heading="Dades Personals">
-      <app-personal-data></app-personal-data>
+      <app-personal-data [attachedFormGroup]="modelForm.get('personalData')"></app-personal-data>
     </tab>
     <tab heading="Domicili Notificació">
-      <app-address-notification></app-address-notification>
+      <app-address-notification  [attachedFormGroup]="modelForm.get('AddressNotification')"></app-address-notification>
     </tab>
   </tabset>
   <button class="btn btn-primary" (click)="saveModel()">Save</button>
+  <button class="btn" (click)="showModel()">Console</button>

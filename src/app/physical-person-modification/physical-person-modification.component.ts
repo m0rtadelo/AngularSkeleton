@@ -13,10 +13,17 @@ export class PhysicalPersonModificationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.modelForm = new FormGroup({
+      personalData: new FormGroup({}),
+      AddressNotification: new FormGroup({}),
+    });
   }
 
   public saveModel(): void {
     // TODO: Implementation
   }
 
+  public showModel() {
+    console.log(this.modelForm);
+  }
 }
