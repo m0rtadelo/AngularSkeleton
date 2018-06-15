@@ -1,0 +1,13 @@
+<div>
+  <tabset>
+    <tab heading="Binding" id="tab1" (select)="this.setTab(1)"></tab>
+    <tab heading="Another thing" (select)="this.setTab(2)"><app-binding></app-binding></tab>
+    <tab heading="Basic Title 2" (select)="this.setTab(3)"><app-my-process-wrapper></app-my-process-wrapper></tab>
+  </tabset>
+</div>
+<div *ngIf="this.tab === 1">
+  <app-binding></app-binding>
+</div>
+<div *ngIf="this.tab === 2">
+
+</div>
