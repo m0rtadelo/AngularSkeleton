@@ -31,6 +31,14 @@ export class PhysicalPersonModificationComponent implements OnInit {
     }
   }
 
+  public cancel(): void {
+    if (this.modelForm.dirty) {
+      alert('You have unsaved changes. Are you sure you want to cancel/leave?');
+    } else {
+      alert('No changes detected, you can leave!');
+    }
+  }
+
   public clearModel(): void {
     this.modelForm.reset();
     this.modelOriginal = this.modelForm.value;
@@ -39,9 +47,9 @@ export class PhysicalPersonModificationComponent implements OnInit {
   public loadModel(): void {
     this.modelForm.setValue({
       personalData: {
-        CAM_PFS_NOM: 'Mariano',
-        CAM_PFS_APE_1: 'Rajoy',
-        CAM_PFS_APE_2: 'Brey',
+        CAM_PFS_NOM: 'Chuck',
+        CAM_PFS_APE_1: 'Norrys',
+        CAM_PFS_APE_2: '', // TODO: Make it working without this key
         CAM_PFS_EDAT: '69',
         CAM_PFS_SSO: { PRO: '12', NUM: '99999999', DIG: '12' }
       },
@@ -61,14 +69,6 @@ export class PhysicalPersonModificationComponent implements OnInit {
 
   public showModel(): void {
     console.log(this.modelForm);
-  }
-
-  public cancel(): void {
-    if (this.modelForm.dirty) {
-      alert('You have unsaved changes. Are you sure you want to cancel/leave?');
-    } else {
-      alert('No changes detected, you can leave!');
-    }
   }
 
   private untouch() {

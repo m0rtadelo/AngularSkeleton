@@ -12,7 +12,6 @@ export class MyBaseComponent implements OnInit {
   @Input() minLength: number;
   public formControl = new FormControl();
   protected validators = [];
-  // private myControl: AbstractControl;
 
   constructor() {}
 
@@ -61,7 +60,6 @@ export class MyBaseComponent implements OnInit {
   public createModel() {
     if (!this.attachedFormGroup.contains(this.name)) {
       this.attachedFormGroup.addControl(this.name, new FormControl(null, this.validators));
-      // this.myControl = this.attachedFormGroup.get(this.name);
     }
   }
 
