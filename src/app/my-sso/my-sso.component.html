@@ -1,6 +1,16 @@
-<div class="form-group" [formGroup]="ssoFormGroup">
-    <label for="lblInput{{name}}">{{title}}</label><span *ngIf="required" style="color: red;"> *</span>
-    <input #input id="lblInput{{name}}" type="text" class="form-control" [placeholder]="placeholder" [formControlName]="NUM" [readOnly]="readOnly" [maxlength]="maxLength">
-
-    <small *ngIf="hasError()" style="color: red;">{{ getError() | json }}</small>
+<div class="form-group" [formGroup]="attachedFormGroup.get(name)">
+  <label for="lblInput{{name}}">{{title}}</label>
+  <span *ngIf="required" style="color: red;"> *</span>
+  <div class="row">
+    <div class="col-3">
+      <input id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="'PRO'" maxlength="2">
+    </div>
+    <div class="col">
+      <input id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="'NUM'" maxlength="8">
+    </div>
+    <div class="col-3">
+      <input id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2">
+    </div>
   </div>
+  <small *ngIf="hasError()" style="color: red;">{{ getError() | json }}</small>
+</div>
