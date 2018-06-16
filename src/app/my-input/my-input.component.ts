@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { MyBaseComponent } from '../my-base-component';
 
 @Component({
-  selector: 'app-my-input-module',
-  templateUrl: './my-input-module.component.html',
-  styleUrls: ['./my-input-module.component.css']
+  selector: 'app-my-input',
+  templateUrl: './my-input.component.html',
+  styleUrls: ['./my-input.component.css']
 })
-export class MyInputModuleComponent extends MyBaseComponent implements OnInit {
+export class MyInputComponent extends MyBaseComponent implements OnInit {
 
   constructor() {
     super();
