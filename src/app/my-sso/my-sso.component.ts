@@ -27,4 +27,13 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
          ? null : {'incorrect': {'must_be': '12 99999999 12'}};
     }
   }
+
+  public isTouched() {
+    return (this.attachedFormGroup.get(this.name).get('PRO').touched ||
+      this.attachedFormGroup.get(this.name).get('PRO').value) &&
+      (this.attachedFormGroup.get(this.name).get('NUM').touched ||
+        this.attachedFormGroup.get(this.name).get('NUM').value) &&
+      (this.attachedFormGroup.get(this.name).get('DIG').touched ||
+        this.attachedFormGroup.get(this.name).get('DIG').value);
+  }
 }
