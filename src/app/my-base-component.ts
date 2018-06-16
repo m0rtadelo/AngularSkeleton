@@ -35,14 +35,26 @@ export class MyBaseComponent implements OnInit {
 
   private setValidators() {
     this.validators = [];
-    if (this.required) {
-      this.validators.push(Validators.required);
+    this.setValidatorRequired();
+    this.setValidatorMaxLength();
+    this.setValidatorMinLength();
+  }
+
+  private setValidatorMinLength() {
+    if (this.minLength) {
+      this.validators.push(Validators.minLength(this.minLength));
     }
+  }
+
+  private setValidatorMaxLength() {
     if (this.maxLength) {
       this.validators.push(Validators.maxLength(this.maxLength));
     }
-    if (this.maxLength) {
-      this.validators.push(Validators.minLength(this.minLength));
+  }
+
+  private setValidatorRequired() {
+    if (this.required) {
+      this.validators.push(Validators.required);
     }
   }
 
