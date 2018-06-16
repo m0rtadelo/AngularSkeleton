@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { MyBaseComponent } from '../my-base-component';
 
 @Component({
@@ -8,6 +7,8 @@ import { MyBaseComponent } from '../my-base-component';
   styleUrls: ['./my-input.component.css']
 })
 export class MyInputComponent extends MyBaseComponent implements OnInit {
+  @ViewChild('input') input: ElementRef;
+  @Input() size: number;
 
   constructor() {
     super();
@@ -15,5 +16,8 @@ export class MyInputComponent extends MyBaseComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
+    if (this.size) {
+      this.input.nativeElement.size = this.size;
+    }
   }
 }
