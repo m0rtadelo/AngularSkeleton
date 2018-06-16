@@ -12,5 +12,5 @@
       <input id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2">
     </div>
   </div>
-  <small *ngIf="hasError()" style="color: red;">{{ getError() | json }}</small>
+  <small *ngIf="hasError() && attachedFormGroup.get(name).touched" style="color: red;">{{ getError() | json }}</small>
 </div>

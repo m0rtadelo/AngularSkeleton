@@ -7,7 +7,7 @@ import { DemoTabsBasicComponent } from './tabs.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BindingModule } from './binding/binding.module';
 import { BindingService } from './binding/binding.service';
-import { AtxTooltipModule, AtxRateModule } from '@atx/material';
+// import { AtxTooltipModule, AtxRateModule } from '@atx/material';
 import { PhysicalPersonModificationModule } from './physical-person-modification/physical-person-modification.module';
 
 @NgModule({
@@ -18,8 +18,8 @@ import { PhysicalPersonModificationModule } from './physical-person-modification
   imports: [
     BrowserModule,
     BindingModule,
-    AtxTooltipModule,
-    AtxRateModule,
+    // AtxTooltipModule,
+    // AtxRateModule,
     PhysicalPersonModificationModule,
     TabsModule.forRoot()
   ],

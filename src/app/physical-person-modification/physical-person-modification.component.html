@@ -1,12 +1,15 @@
 <tabset>
-    <tab heading="Dades Personals">
-      <app-personal-data [attachedFormGroup]="modelForm.get('personalData')"></app-personal-data>
-    </tab>
-    <tab heading="Domicili Notificació">
-      <app-address-notification  [attachedFormGroup]="modelForm.get('AddressNotification')"></app-address-notification>
-    </tab>
-  </tabset>
-  <button *ngIf="modelForm.status === 'VALID'" class="btn btn-primary" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
-  <button *ngIf="modelForm.status !== 'VALID'" class="btn btn-danger" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
-  <button class="btn" (click)="cancel()">Cancel</button>
-  <button class="btn" (click)="showModel()">Console</button>
+  <tab heading="Dades Personals">
+    <app-personal-data [attachedFormGroup]="modelForm.get('personalData')"></app-personal-data>
+  </tab>
+  <tab heading="Domicili Notificació">
+    <app-address-notification [attachedFormGroup]="modelForm.get('AddressNotification')"></app-address-notification>
+  </tab>
+</tabset>
+<button *ngIf="modelForm.status === 'VALID'" class="btn btn-primary" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
+<button *ngIf="modelForm.status !== 'VALID'" class="btn btn-danger" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
+<button class="btn" (click)="cancel()">Cancel</button>
+<button class="btn btn-link" (click)="showModel()">Console</button>
+<button class="btn btn-info" (click)="clearModel()">Clean</button>
+<button class="btn btn-info" (click)="loadModel()">Load</button>
+<button class="btn btn-info" (click)="resetModel()">Reset</button>

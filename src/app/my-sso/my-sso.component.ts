@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyBaseComponent } from '../my-base-component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-// import { SSOValidator } from './my-sso.validator';
 
 @Component({
   selector: 'app-my-sso',
@@ -12,10 +11,6 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
 
   constructor() {
     super();
-  }
-
-  ngOnInit() {
-    super.ngOnInit();
   }
 
   public createModel() {
@@ -29,7 +24,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
 
     function SSOValidator(g: FormGroup) {
       return g.get('PRO').value === '12' && g.get('DIG').value === '12' && g.get('NUM').value === '99999999'
-         ? null : {'value': {'must_be': '12 99999999 12'}};
+         ? null : {'incorrect': {'must_be': '12 99999999 12'}};
     }
   }
 }
