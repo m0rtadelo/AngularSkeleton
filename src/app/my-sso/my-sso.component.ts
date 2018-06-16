@@ -25,6 +25,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
         NUM: new FormControl(null, Validators.maxLength(8)),
         DIG: new FormControl(null, Validators.maxLength(2)),
       })); // new FormControl(null, this.validators));
+      this.ssoFormGroup = this.attachedFormGroup.get(this.name);
     }
   }
 }
