@@ -21,6 +21,11 @@ export class PhysicalPersonModificationComponent implements OnInit {
 
   public saveModel(): void {
     // TODO: Map model to DTO and send to back
+    if (this.modelForm.status !== 'VALID') {
+      alert('Validation errors detected!\nErrors must be fixed.');
+    } else {
+      alert('Data saved!');
+    }
   }
 
   public showModel() {
