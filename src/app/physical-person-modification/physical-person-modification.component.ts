@@ -48,4 +48,8 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
     this.modelOriginal = this.modelForm.getRawValue();
     this.untouch();
   }
+
+  public valueChanged(data) {
+    console.log(data);
+  }
 }

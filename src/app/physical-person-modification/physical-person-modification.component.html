@@ -1,7 +1,7 @@
 <div class="container" style="position: relative; top: 20px;">
   <tabset>
     <tab heading="Dades Personals">
-      <app-personal-data [attachedFormGroup]="modelForm.get('personalData')"></app-personal-data>
+      <app-personal-data [attachedFormGroup]="modelForm.get('personalData')" (valueChange)="valueChanged($event)"></app-personal-data>
     </tab>
     <tab heading="Domicili Notificació">
       <app-address-notification [attachedFormGroup]="modelForm.get('addressNotification')"></app-address-notification>
