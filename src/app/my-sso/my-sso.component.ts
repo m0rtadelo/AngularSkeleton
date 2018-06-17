@@ -18,6 +18,9 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
 
   public createModel() {
     this.validators.push(this.SSOValidator);
+    if (this.required) {
+      this.validators.push(this.requiredValidator);
+    }
     if (!this.attachedFormGroup.contains(this.name)) {
       this.attachedFormGroup.addControl(this.name, new FormGroup({
         PRO: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
@@ -28,9 +31,18 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   }
 
   private SSOValidator(g: FormGroup) {
-    return (g.get('PRO').value === '12' && g.get('DIG').value === '12' && g.get('NUM').value === '99999999') ||
-      ((g.get('PRO').value === '' || g.get('DIG').value === '' || g.get('NUM').value === '') && this.required)
+    if (!!!g.get('PRO').value || !!!g.get('NUM').value || !!!g.get('DIG').value) {
+      return null;
+    }
+    return (g.get('PRO').value === '12' && g.get('DIG').value === '12' && g.get('NUM').value === '99999999')
        ? null : {'incorrect': {'must_be': '12 99999999 12'}};
+  }
+
+  private requiredValidator(g: FormGroup) {
+    return ((g.get('PRO').value === '' || g.get('PRO').value === null )
+    || (g.get('DIG').value === '' || g.get('DIG').value === null )
+    || (g.get('NUM').value === '' || g.get('NUM').value === null))
+      ? {'required' : true} : null;
   }
 
   public hasFocus() {
@@ -49,10 +61,9 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
     return (g.get('PRO').value) || (g.get('NUM').value) || (g.get('DIG').value);
   }
 
-  public onChange(value, name) {
+  public onChange() {
     let data = {};
-    data[this.name] = {};
-    data[this.name][name] = value;
+    data[this.name] = this.attachedFormGroup.get(this.name).value;
     this.valueChange.emit(data);
   }
 

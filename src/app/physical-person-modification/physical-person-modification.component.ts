@@ -33,7 +33,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
         // CAM_PFS_APE_2: NOT DEFINED. ERROR?
         CAM_PFS_EDAT: '69',
         CAM_PFS_IEXISTENT: 'MUST IGNORE THIS FIELD. ERROR?',
-        CAM_PFS_SSO: { PRO: '12', NUM: '99999999', DIG: '12' }
+        CAM_PFS_SSO: { PRO: '12', NUM: '99999999', DIG: '21' }
         // CAM_PFS_SSO2: NOT DEFINED. ERROR?
       },
       addressNotification: {
@@ -51,10 +51,5 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
 
   public valueChanged(data) {
     console.log(data);
-    if (data.CAM_PATATA) {
-      if (data.CAM_PATATA === 'patata') {
-        this.especial = true;
-      }
-    }
   }
 }

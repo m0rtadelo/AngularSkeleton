@@ -6,7 +6,7 @@
     <tab heading="Domicili Notificació">
       <app-address-notification [attachedFormGroup]="modelForm.get('addressNotification')"></app-address-notification>
     </tab>
-    <tab *ngIf="especial" heading="Especial">
+    <tab *ngIf="this.modelForm.get('personalData').get('CAM_PATATA')?.value === 'patata'" heading="Especial">
         <h1>ESPECIAL TAB</h1>
       </tab>
     </tabset>
