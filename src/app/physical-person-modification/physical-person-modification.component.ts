@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-physical-person-modification',
@@ -10,12 +10,12 @@ export class PhysicalPersonModificationComponent implements OnInit {
   public modelForm: FormGroup;
   public modelOriginal;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.modelForm = new FormGroup({
       personalData: new FormGroup({}),
-      AddressNotification: new FormGroup({}),
+      AddressNotification: new FormGroup({})
     });
   }
 
@@ -45,11 +45,10 @@ export class PhysicalPersonModificationComponent implements OnInit {
   }
 
   public loadModel(): void {
-    this.modelForm.setValue({
+    const value = {
       personalData: {
         CAM_PFS_NOM: 'Chuck',
         CAM_PFS_APE_1: 'Norrys',
-        CAM_PFS_APE_2: '', // TODO: Make it working without this key
         CAM_PFS_EDAT: '69',
         CAM_PFS_SSO: { PRO: '12', NUM: '99999999', DIG: '12' }
       },
@@ -57,7 +56,10 @@ export class PhysicalPersonModificationComponent implements OnInit {
         CAM_PFS_TIP_VIA: 'El Vecino',
         CAM_PFS_NOM_VIA: 'El Alcalde'
       }
-    });
+    };
+    this.adaptModel(this.modelForm, value);
+    this.modelForm.setValue(value);
+
     this.modelOriginal = this.modelForm.value;
     this.untouch();
   }
@@ -76,7 +78,22 @@ export class PhysicalPersonModificationComponent implements OnInit {
     this.modelForm.markAsPristine();
   }
 
-  private touchAll() {
-
+  private adaptModel(model: FormGroup | FormControl, values) {
+    Object.keys(model.controls).forEach(control => {
+      if (model.controls[control] instanceof FormGroup) {
+        if (values[control] === undefined) {
+          values[control] = model.value[control];
+        }
+        this.adaptModel(model.controls[control], values[control]);
+      }
+      if (model.controls[control] instanceof FormControl) {
+        if (values[control] === undefined) {
+          values[control] = '';
+        }
+      }
+    });
   }
+
+  // TODO: Enable visibility of all errors
+  private touchAll() {}
 }

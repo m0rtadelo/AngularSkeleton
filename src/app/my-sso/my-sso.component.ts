@@ -17,7 +17,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   }
 
   public createModel() {
-    console.log(this.validators);
+    // console.log(this.validators);
     this.validators.push(SSOValidator);
     if (!this.attachedFormGroup.contains(this.name)) {
       this.attachedFormGroup.addControl(this.name, new FormGroup({
