@@ -1,10 +1,10 @@
 <div class="container" style="position: relative; top: 20px;">
   <tabset>
     <tab heading="Dades Personals">
-      <app-personal-data [attachedFormGroup]="modelForm.get('personalData')"></app-personal-data>
+      <app-personal-data #personalData [attachedFormGroup]="modelForm.get('personalData')"></app-personal-data>
     </tab>
     <tab heading="Domicili Notificació">
-      <app-address-notification [attachedFormGroup]="modelForm.get('AddressNotification')"></app-address-notification>
+      <app-address-notification #addressNotification [attachedFormGroup]="modelForm.get('AddressNotification')"></app-address-notification>
     </tab>
   </tabset>
   <div style="position: relative; float: right; top: 20px;">

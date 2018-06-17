@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class MyBaseProcess implements OnInit {
   public modelForm: FormGroup;
   public modelOriginal;
+  public childs = [];
 
   ngOnInit(): void {
   }
@@ -31,6 +32,7 @@ export class MyBaseProcess implements OnInit {
   public clearModel(): void {
     this.modelForm.reset();
     this.modelOriginal = this.modelForm.value;
+    this.untouch();
   }
 
   public resetModel() {
@@ -47,6 +49,13 @@ export class MyBaseProcess implements OnInit {
   public untouch() {
     this.modelForm.markAsUntouched();
     this.modelForm.markAsPristine();
+    /*
+    this.childs.map(child => {
+      this.personalData.valueChange(this.modelForm.get('personalData').value);
+    })
+    this.personalData.valueChange(this.modelForm.get('personalData').value);
+    this.personalData.valueChange(this.modelForm.get('addressNotification').value);
+    */
   }
 
   public adaptModelValues(model: FormGroup | FormControl, values) {

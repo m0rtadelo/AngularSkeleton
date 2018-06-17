@@ -1,6 +1,8 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MyBaseProcess } from '../my-base-process.component';
+import { PersonalDataComponent } from './personal-data/personal-data.component';
+import { AddressNotificationComponent } from './address-notification/address-notification.component';
 
 @Component({
   selector: 'app-physical-person-modification',
@@ -8,6 +10,9 @@ import { MyBaseProcess } from '../my-base-process.component';
   styleUrls: ['./physical-person-modification.component.css']
 })
 export class PhysicalPersonModificationComponent extends MyBaseProcess implements OnInit, AfterViewInit {
+  @ViewChild('personalData') personalData: PersonalDataComponent;
+  @ViewChild('addressNotification') addressNotification: AddressNotificationComponent;
+  public childs = ['personalData', 'addressNotification'];
 
   constructor() {
     super();
@@ -42,9 +47,11 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
       }
     };
     this.adaptModelValues(this.modelForm, value);
-    this.modelForm.setValue(value);
-
+    this.modelForm.setValue(value, {emitEvent: true});
     this.modelOriginal = this.modelForm.value;
+    this.childs.map(child => {
+      this[child].valueChange(this.modelForm.get(child).value);
+    });
     this.untouch();
   }
 }

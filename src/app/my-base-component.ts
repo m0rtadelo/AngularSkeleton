@@ -7,7 +7,7 @@ export class MyBaseComponent implements OnInit {
   @Input() placeholder: string;
   @Input() attachedFormGroup: FormGroup;
   @Input() required = false;
-  @Input() readOnly = false;
+  @Input() disabled = false;
   @Input() maxLength: number;
   @Input() minLength: number;
   @Output() valueChange = new EventEmitter();
@@ -38,6 +38,11 @@ export class MyBaseComponent implements OnInit {
   private configure() {
     this.setValidators();
     this.createModel();
+    if (this.disabled) {
+      this.attachedFormGroup.get(this.name).disable();
+    } else {
+      this.attachedFormGroup.get(this.name).enable();
+    }
   }
 
   private setValidators() {
