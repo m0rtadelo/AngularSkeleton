@@ -20,4 +20,16 @@ export class MyInputComponent extends MyBaseComponent implements OnInit {
       this.input.nativeElement.size = this.size;
     }
   }
+
+  public hasFocus() {
+    return (this.input.nativeElement === document.activeElement);
+  }
+
+  public isTouched() {
+    return this.attachedFormGroup.get(this.name).touched;
+  }
+
+  public hasValue() {
+    return this.attachedFormGroup.get(this.name).value;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MyBaseComponent } from '../my-base-component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,18 +8,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./my-sso.component.css']
 })
 export class MySsoComponent extends MyBaseComponent implements OnInit {
+  @ViewChild('pro') pro: ElementRef;
+  @ViewChild('num') num: ElementRef;
+  @ViewChild('dig') dig: ElementRef;
 
   constructor() {
     super();
   }
 
   public createModel() {
+    console.log(this.validators);
+    this.validators.push(SSOValidator);
     if (!this.attachedFormGroup.contains(this.name)) {
       this.attachedFormGroup.addControl(this.name, new FormGroup({
         PRO: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
         NUM: new FormControl(null, [Validators.maxLength(8), Validators.minLength(8)]),
         DIG: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
-      }, SSOValidator));
+      }, this.validators));
     }
 
     function SSOValidator(g: FormGroup) {
@@ -28,12 +33,19 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
     }
   }
 
+  public hasFocus() {
+    return ((this.dig.nativeElement === document.activeElement)
+    || (this.num.nativeElement === document.activeElement)
+    || (this.pro.nativeElement === document.activeElement));
+  }
+
   public isTouched() {
-    return (this.attachedFormGroup.get(this.name).get('PRO').touched ||
-      this.attachedFormGroup.get(this.name).get('PRO').value) &&
-      (this.attachedFormGroup.get(this.name).get('NUM').touched ||
-        this.attachedFormGroup.get(this.name).get('NUM').value) &&
-      (this.attachedFormGroup.get(this.name).get('DIG').touched ||
-        this.attachedFormGroup.get(this.name).get('DIG').value);
+    const g = this.attachedFormGroup.get(this.name);
+    return (g.get('PRO').touched) && (g.get('NUM').touched) && (g.get('DIG').touched);
+  }
+
+  public hasValue() {
+    const g = this.attachedFormGroup.get(this.name);
+    return (g.get('PRO').value) || (g.get('NUM').value) || (g.get('DIG').value);
   }
 }

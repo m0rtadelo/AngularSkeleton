@@ -62,5 +62,4 @@ export class MyBaseComponent implements OnInit {
       this.attachedFormGroup.addControl(this.name, new FormControl(null, this.validators));
     }
   }
-
 }

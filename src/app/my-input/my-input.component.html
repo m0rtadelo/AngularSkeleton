@@ -1,5 +1,5 @@
 <div class="form-group" [formGroup]="attachedFormGroup">
   <label for="lblInput{{name}}">{{title}}</label><span *ngIf="required" style="color: red;"> *</span>
   <input #input id="lblInput{{name}}" type="text" class="form-control" [placeholder]="placeholder" [formControlName]="name" [readOnly]="readOnly" [maxlength]="maxLength">
-  <small *ngIf="hasError() && attachedFormGroup.get(name).touched" style="color: red;">{{ getError() | json }}</small>
+  <small *ngIf="hasError() && !hasFocus() && (hasValue() || (required && isTouched()))" style="color: red;">{{ getError() | json }}</small>
 </div>

@@ -3,14 +3,14 @@
   <span *ngIf="required" style="color: red;"> *</span>
   <div class="row">
     <div class="col-3">
-      <input id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="'PRO'" maxlength="2">
+      <input #pro id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="'PRO'" maxlength="2">
     </div>
     <div class="col">
-      <input id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="'NUM'" maxlength="8">
+      <input #num id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="'NUM'" maxlength="8">
     </div>
     <div class="col-3">
-      <input id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2">
+      <input #dig id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2">
     </div>
   </div>
-  <small *ngIf="hasError() && isTouched()" style="color: red;">{{ getError() | json }}</small>
+  <small *ngIf="hasError() && !hasFocus() && (hasValue() || (required && isTouched()))" style="color: red;">{{ getError() | json }}</small>
 </div>
