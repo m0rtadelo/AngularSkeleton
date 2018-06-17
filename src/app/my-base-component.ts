@@ -1,5 +1,11 @@
 import { Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl, Validators, ControlValueAccessor } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  AbstractControl,
+  Validators,
+  ControlValueAccessor
+} from '@angular/forms';
 
 export class MyBaseComponent implements OnInit {
   @Input() name: string;
@@ -7,7 +13,7 @@ export class MyBaseComponent implements OnInit {
   @Input() placeholder: string;
   @Input() attachedFormGroup: FormGroup;
   @Input() required = false;
-  @Input() disabled = false;
+  @Input() readOnly = false;
   @Input() maxLength: number;
   @Input() minLength: number;
   @Output() valueChange = new EventEmitter();
@@ -19,6 +25,11 @@ export class MyBaseComponent implements OnInit {
 
   ngOnInit() {
     this.configure();
+    if (this.attachedFormGroup.get(this.name) instanceof FormControl) {
+      this.attachedFormGroup.get(this.name).valueChanges.subscribe(data => {
+        this.onChange(data);
+      });
+    }
   }
 
   public onChange(value) {
@@ -38,11 +49,6 @@ export class MyBaseComponent implements OnInit {
   private configure() {
     this.setValidators();
     this.createModel();
-    if (this.disabled) {
-      this.attachedFormGroup.get(this.name).disable();
-    } else {
-      this.attachedFormGroup.get(this.name).enable();
-    }
   }
 
   private setValidators() {
@@ -72,7 +78,10 @@ export class MyBaseComponent implements OnInit {
 
   public createModel() {
     if (!this.attachedFormGroup.contains(this.name)) {
-      this.attachedFormGroup.addControl(this.name, new FormControl(null, this.validators));
+      this.attachedFormGroup.addControl(
+        this.name,
+        new FormControl(null, this.validators)
+      );
     }
   }
 }

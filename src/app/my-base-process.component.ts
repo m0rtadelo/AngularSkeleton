@@ -4,7 +4,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class MyBaseProcess implements OnInit {
   public modelForm: FormGroup;
   public modelOriginal;
-  public childs = [];
 
   ngOnInit(): void {
   }
@@ -15,7 +14,7 @@ export class MyBaseProcess implements OnInit {
       alert('Validation errors detected!\nErrors must be fixed.');
     } else {
       console.log(this.modelForm.value);
-      this.modelOriginal = this.modelForm.value;
+      this.modelOriginal = this.modelForm.getRawValue();
       this.untouch();
       alert('Data saved!');
     }
@@ -31,31 +30,25 @@ export class MyBaseProcess implements OnInit {
 
   public clearModel(): void {
     this.modelForm.reset();
-    this.modelOriginal = this.modelForm.value;
-    this.untouch();
+    this.modelOriginal = this.modelForm.getRawValue();
   }
 
   public resetModel() {
     this.modelForm.reset();
     this.modelForm.setValue(this.modelOriginal);
-    this.modelOriginal = this.modelForm.value;
+    this.modelOriginal = this.modelForm.getRawValue();
     this.untouch();
   }
 
   public showModel(): void {
+    console.log(this.modelOriginal);
+    console.log(this.modelForm.getRawValue());
     console.log(this.modelForm);
   }
 
   public untouch() {
     this.modelForm.markAsUntouched();
     this.modelForm.markAsPristine();
-    /*
-    this.childs.map(child => {
-      this.personalData.valueChange(this.modelForm.get('personalData').value);
-    })
-    this.personalData.valueChange(this.modelForm.get('personalData').value);
-    this.personalData.valueChange(this.modelForm.get('addressNotification').value);
-    */
   }
 
   public adaptModelValues(model: FormGroup | FormControl, values) {
@@ -65,7 +58,8 @@ export class MyBaseProcess implements OnInit {
 
   private adaptModel(model: FormGroup | FormControl, values) {
     // Adding keys to value from model
-    Object.keys(model.controls).forEach(control => {
+    // model.getRawValue();
+    Object.keys(model.getRawValue()).forEach(control => {
       if (model.controls[control] instanceof FormGroup) {
         if (values[control] === undefined) {
           values[control] = model.value[control];

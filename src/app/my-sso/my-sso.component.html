@@ -3,13 +3,13 @@
   <span *ngIf="required" style="color: red;"> *</span>
   <div class="row">
     <div class="col-3">
-      <input #pro id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="'PRO'" maxlength="2"  (change)="onChange(attachedFormGroup.get(name).value)">
+      <input #pro id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="'PRO'" maxlength="2"  (change)="onChange(pro.value,'PRO')">
     </div>
     <div class="col">
-      <input #num id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="'NUM'" maxlength="8"  (change)="onChange(attachedFormGroup.get(name).value)">
+      <input #num id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="'NUM'" maxlength="8"  (change)="onChange(num.value,'NUM')">
     </div>
     <div class="col-3">
-      <input #dig id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2"  (change)="onChange(attachedFormGroup.get(name).value)">
+      <input #dig id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2"  (change)="onChange(dig.value, 'DIG')">
     </div>
   </div>
   <small *ngIf="hasError() && !hasFocus() && (hasValue() || (required && isTouched()))" style="color: red;">{{ getError() | json }}</small>

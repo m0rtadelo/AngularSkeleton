@@ -1,8 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MyBaseProcess } from '../my-base-process.component';
-import { PersonalDataComponent } from './personal-data/personal-data.component';
-import { AddressNotificationComponent } from './address-notification/address-notification.component';
 
 @Component({
   selector: 'app-physical-person-modification',
@@ -10,9 +8,6 @@ import { AddressNotificationComponent } from './address-notification/address-not
   styleUrls: ['./physical-person-modification.component.css']
 })
 export class PhysicalPersonModificationComponent extends MyBaseProcess implements OnInit, AfterViewInit {
-  @ViewChild('personalData') personalData: PersonalDataComponent;
-  @ViewChild('addressNotification') addressNotification: AddressNotificationComponent;
-  public childs = ['personalData', 'addressNotification'];
 
   constructor() {
     super();
@@ -41,14 +36,16 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
         CAM_PFS_SSO: { PRO: '12', NUM: '99999999', DIG: '12' }
         // CAM_PFS_SSO2: NOT DEFINED. ERROR?
       },
-      AddressNotification: {
+      addressNotification: {
         CAM_PFS_TIP_VIA: 'El Vecino',
-        CAM_PFS_NOM_VIA: 'El Alcalde'
+        CAM_PFS_NOM_VIA: 'El Alcalde',
+        CAM_PFS_PAI_RES: 'Catalunya',
       }
     };
     this.adaptModelValues(this.modelForm, value);
-    this.modelForm.setValue(value, {emitEvent: true});
-    this.modelOriginal = this.modelForm.value;
+    this.modelForm.setValue(value);
+
+    this.modelOriginal = this.modelForm.getRawValue();
     this.untouch();
   }
 }

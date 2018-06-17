@@ -15,7 +15,21 @@ export class AddressNotificationComponent implements OnInit {
   }
 
   public valueChange(data) {
-    console.log(data);
+    Object.keys(data).forEach(key => {
+      if (key === 'CAM_PFS_PRO_RES') {
+        if (!!!data['CAM_PFS_PRO_RES']) {
+          this.attachedFormGroup.get('CAM_PFS_MUN_RES').disable();
+        } else {
+          this.attachedFormGroup.get('CAM_PFS_MUN_RES').enable();
+        }
+      }
+      if (key === 'CAM_PFS_PAI_RES') {
+        if (!!!data['CAM_PFS_PAI_RES']) {
+          this.attachedFormGroup.get('CAM_PFS_PRO_RES').disable();
+        } else {
+          this.attachedFormGroup.get('CAM_PFS_PRO_RES').enable();
+        }
+      }
+    });
   }
-
 }
