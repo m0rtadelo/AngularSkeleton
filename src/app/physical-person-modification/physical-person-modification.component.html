@@ -6,7 +6,10 @@
     <tab heading="Domicili Notificació">
       <app-address-notification [attachedFormGroup]="modelForm.get('addressNotification')"></app-address-notification>
     </tab>
-  </tabset>
+    <tab *ngIf="especial" heading="Especial">
+        <h1>ESPECIAL TAB</h1>
+      </tab>
+    </tabset>
   <div style="position: relative; float: right; top: 20px;">
       <button class="btn btn-info" (click)="clearModel()">Clean</button>
       <button class="btn btn-info" (click)="loadModel()">Load</button>

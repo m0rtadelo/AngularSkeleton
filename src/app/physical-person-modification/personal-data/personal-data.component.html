@@ -5,7 +5,7 @@
   </div>
   <div class="col">
     <app-my-input [title]="'Primer cognom'" [placeholder]="'Introduir primer cognom'" [name]="'CAM_PFS_APE_1'" [attachedFormGroup]="attachedFormGroup"
-      [required]="true" (valueChange)="valueChanged($event)"></app-my-input>
+      [required]="true" (valueChange)="valueChanged($event)" [readOnly]="!!!attachedFormGroup.get('CAM_PFS_NOM').value"></app-my-input>
   </div>
   <div class="col">
     <app-my-input [title]="'Segon cognom'" [placeholder]="'Introduir segon cognom'" [name]="'CAM_PFS_APE_2'" [attachedFormGroup]="attachedFormGroup"
@@ -24,4 +24,9 @@
     <app-my-sso [attachedFormGroup]="attachedFormGroup" [title]="'Número Seguretat Civil'" [name]="'CAM_PFS_SCI'"
       [required]="true" (valueChange)="valueChanged($event)"></app-my-sso>
   </div>
+  <div class="col">
+      <app-my-input [title]="'Especial'" [placeholder]="'Introduir patata'" [name]="'CAM_PATATA'" [attachedFormGroup]="attachedFormGroup"
+        [required]="true" (valueChange)="valueChanged($event)"></app-my-input>
+    </div>
+
 </div>

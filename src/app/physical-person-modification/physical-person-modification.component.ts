@@ -8,7 +8,7 @@ import { MyBaseProcess } from '../my-base-process.component';
   styleUrls: ['./physical-person-modification.component.css']
 })
 export class PhysicalPersonModificationComponent extends MyBaseProcess implements OnInit, AfterViewInit {
-
+  private especial = false;
   constructor() {
     super();
   }
@@ -51,5 +51,10 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
 
   public valueChanged(data) {
     console.log(data);
+    if (data.CAM_PATATA) {
+      if (data.CAM_PATATA === 'patata') {
+        this.especial = true;
+      }
+    }
   }
 }
