@@ -1,10 +1,23 @@
 <form>
   <div class="row">
     <div class="col">
-      <app-my-input [title]="'Via'" [placeholder]="'Introduir Via'" [name]="'CAM_PFS_TIP_VIA'" [attachedFormGroup]="attachedFormGroup" [required]="true"></app-my-input>
+      <app-my-input [title]="'Via'" [placeholder]="'Introduir Via'" [name]="'CAM_PFS_TIP_VIA'" [attachedFormGroup]="attachedFormGroup"
+        [required]="true"></app-my-input>
     </div>
     <div class="col">
-      <app-my-input [title]="'Nom'" [placeholder]="'Introduir Nom via'" [name]="'CAM_PFS_NOM_VIA'" [attachedFormGroup]="attachedFormGroup" ></app-my-input>
+      <app-my-input [title]="'Nom'" [placeholder]="'Introduir Nom via'" [name]="'CAM_PFS_NOM_VIA'" [attachedFormGroup]="attachedFormGroup"></app-my-input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-my-input [title]="'Pais'" [placeholder]="'Introduir Pais'" [name]="'CAM_PFS_PAI_RES'" [attachedFormGroup]="attachedFormGroup"
+        [required]="true" [minLength]="2" [maxLength]="10"></app-my-input>
+    </div>
+    <div class="col">
+      <app-my-input [title]="'Província'" [maxLength]="20" [placeholder]="'Introduir Província'" [name]="'CAM_PFS_PRO_RES'" [attachedFormGroup]="attachedFormGroup" (valueChange)="valueChange($event)"></app-my-input>
+    </div>
+    <div class="col">
+      <app-my-input [title]="'Municipi'" [maxLength]="20" [placeholder]="'Introduir Municipi'" [name]="'CAM_PFS_MUN_RES'" [attachedFormGroup]="attachedFormGroup"></app-my-input>
     </div>
   </div>
 </form>

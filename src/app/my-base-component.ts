@@ -1,5 +1,5 @@
-import { Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl, Validators } from '@angular/forms';
+import { Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, AbstractControl, Validators, ControlValueAccessor } from '@angular/forms';
 
 export class MyBaseComponent implements OnInit {
   @Input() name: string;
@@ -10,6 +10,8 @@ export class MyBaseComponent implements OnInit {
   @Input() readOnly = false;
   @Input() maxLength: number;
   @Input() minLength: number;
+  @Output() valueChange = new EventEmitter();
+
   public formControl = new FormControl();
   protected validators = [];
 
@@ -17,6 +19,12 @@ export class MyBaseComponent implements OnInit {
 
   ngOnInit() {
     this.configure();
+  }
+
+  public onChange(value) {
+    let data = {};
+    data[this.name] = value;
+    this.valueChange.emit(data);
   }
 
   public hasError() {

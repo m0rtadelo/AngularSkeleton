@@ -14,4 +14,8 @@ export class AddressNotificationComponent implements OnInit {
   ngOnInit() {
   }
 
+  public valueChange(data) {
+    console.log(data);
+  }
+
 }

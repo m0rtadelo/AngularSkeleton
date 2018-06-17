@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <app-my-input [title]="'Nom'" [placeholder]="'Introduir Nom'" [name]="'CAM_PFS_NOM'" [attachedFormGroup]="attachedFormGroup"
-      [required]="true" [minLength]="2" [maxLength]="20"></app-my-input>
+      [required]="true" [minLength]="2" [maxLength]="20" (valueChange)="valueChange($event)"></app-my-input>
   </div>
   <div class="col">
     <app-my-input [title]="'Primer cognom'" [placeholder]="'Introduir primer cognom'" [name]="'CAM_PFS_APE_1'" [attachedFormGroup]="attachedFormGroup"
@@ -13,15 +13,15 @@
   </div>
 </div>
 <div class="row">
+  <div class="col-4">
+    <app-my-sso [attachedFormGroup]="attachedFormGroup" [title]="'Número Seguretat Social'" [name]="'CAM_PFS_SSO'" (valueChange)="valueChange($event)"></app-my-sso>
+  </div>
   <div class="col-1">
     <app-my-input [title]="'Edat'" [placeholder]="'nnn'" [name]="'CAM_PFS_EDAT'" [attachedFormGroup]="attachedFormGroup" [minLength]="2"
       [required]="false" [maxLength]="3" [readOnly]="true"></app-my-input>
   </div>
   <div class="col-4">
-    <app-my-sso [attachedFormGroup]="attachedFormGroup" [title]="'Número Seguretat Social'" [name]="'CAM_PFS_SSO'"></app-my-sso>
-    </div>
-    <div class="col-4">
-        <app-my-sso [attachedFormGroup]="attachedFormGroup" [title]="'Número Seguretat Social (required)'" [name]="'CAM_PFS_SSO2'" [required]="true"></app-my-sso>
-        </div>
-
+    <app-my-sso [attachedFormGroup]="attachedFormGroup" [title]="'Número Seguretat Civil'" [name]="'CAM_PFS_SCI'"
+      [required]="true" (valueChange)="valueChange($event)"></app-my-sso>
+  </div>
 </div>

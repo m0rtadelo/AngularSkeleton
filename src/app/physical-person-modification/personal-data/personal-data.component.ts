@@ -8,10 +8,21 @@ import { FormGroup } from '@angular/forms';
 })
 export class PersonalDataComponent implements OnInit {
   @Input() attachedFormGroup: FormGroup;
-
   constructor() { }
 
   ngOnInit() {
   }
 
+  public valueChange(data) {
+    Object.keys(data).forEach(key => {
+      if (key === 'CAM_PFS_NOM') {
+        if (data['CAM_PFS_NOM'] === '') {
+          this.attachedFormGroup.get('CAM_PFS_APE_1').disable();
+        } else {
+          this.attachedFormGroup.get('CAM_PFS_APE_1').enable();
+        }
+      }
+    });
+    console.log(data);
+  }
 }
