@@ -17,8 +17,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   }
 
   public createModel() {
-    // console.log(this.validators);
-    this.validators.push(SSOValidator);
+    this.validators.push(this.SSOValidator);
     if (!this.attachedFormGroup.contains(this.name)) {
       this.attachedFormGroup.addControl(this.name, new FormGroup({
         PRO: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
@@ -26,11 +25,12 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
         DIG: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
       }, this.validators));
     }
+  }
 
-    function SSOValidator(g: FormGroup) {
-      return g.get('PRO').value === '12' && g.get('DIG').value === '12' && g.get('NUM').value === '99999999'
-         ? null : {'incorrect': {'must_be': '12 99999999 12'}};
-    }
+  private SSOValidator(g: FormGroup) {
+    return (g.get('PRO').value === '12' && g.get('DIG').value === '12' && g.get('NUM').value === '99999999') ||
+      ((g.get('PRO').value === '' || g.get('DIG').value === '' || g.get('NUM').value === '') && this.required)
+       ? null : {'incorrect': {'must_be': '12 99999999 12'}};
   }
 
   public hasFocus() {
