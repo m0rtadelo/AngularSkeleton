@@ -10,7 +10,7 @@
   <div style="position: relative; float: right; top: 20px;">
       <button class="btn btn-info" (click)="clearModel()">Clean</button>
       <button class="btn btn-info" (click)="loadModel()">Load</button>
-      <button class="btn btn-info" (click)="resetModel()">Reset</button>
+      <button class="btn btn-info" (click)="resetModel()" [disabled]="this.modelOriginal === undefined">Reset</button>
       <button class="btn btn-link" (click)="showModel()">Console</button>
       <button *ngIf="modelForm.status === 'VALID'" class="btn btn-primary" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
       <button *ngIf="modelForm.status !== 'VALID'" class="btn btn-danger" (click)="saveModel()" [disabled]="!modelForm.dirty">Save</button>
