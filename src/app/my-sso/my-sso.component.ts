@@ -48,12 +48,12 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
     const g = this.attachedFormGroup.get(this.name);
     return (g.get('PRO').value) || (g.get('NUM').value) || (g.get('DIG').value);
   }
-
-  public onChange(value, name) {
+/*
+  protected onChange(value, name) {
     let data = {};
     data[this.name] = {};
     data[this.name][name] = value;
     this.valueChange.emit(data);
   }
-
+*/
 }

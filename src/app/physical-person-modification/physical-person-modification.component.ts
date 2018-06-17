@@ -22,7 +22,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
     super.ngOnInit();
     this.modelForm = new FormGroup({
       personalData: new FormGroup({}),
-      AddressNotification: new FormGroup({})
+      addressNotification: new FormGroup({})
     });
   }
 
@@ -49,9 +49,6 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
     this.adaptModelValues(this.modelForm, value);
     this.modelForm.setValue(value, {emitEvent: true});
     this.modelOriginal = this.modelForm.value;
-    this.childs.map(child => {
-      this[child].valueChange(this.modelForm.get(child).value);
-    });
     this.untouch();
   }
 }
