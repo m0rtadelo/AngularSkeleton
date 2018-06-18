@@ -59,14 +59,15 @@ export class MyBaseProcess implements OnInit {
   private adaptModel(model: FormGroup | FormControl, values) {
     // Adding keys to value from model
     // model.getRawValue();
-    Object.keys(model.getRawValue()).forEach(control => {
-      if (model.controls[control] instanceof FormGroup) {
+    const group = <FormGroup> model;
+    Object.keys(group.getRawValue()).forEach(control => {
+      if (model.get(control) instanceof FormGroup) {
         if (values[control] === undefined) {
           values[control] = model.value[control];
         }
-        this.adaptModel(model.controls[control], values[control]);
+        this.adaptModel(<FormGroup>model.get(control), values[control]);
       }
-      if (model.controls[control] instanceof FormControl) {
+      if (model.get(control) instanceof FormControl) {
         if (values[control] === undefined) {
           values[control] = '';
         }
@@ -78,7 +79,7 @@ export class MyBaseProcess implements OnInit {
     // Deleting values that not exists in model
     Object.keys(values).forEach(key => {
       if (typeof values[key] === 'object') {
-        this.adaptValues(model.controls[key], values[key]);
+        this.adaptValues(<FormGroup>model.get(key), values[key]);
       } else {
         if (model.get(key) === null) {
           delete values[key];
