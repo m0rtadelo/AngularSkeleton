@@ -27,10 +27,12 @@ export class MyBaseComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.configure();
-    if (this.attachedFormGroup.get(this.name) instanceof FormControl) {
-      this.subscription = this.attachedFormGroup.get(this.name).valueChanges.subscribe(data => {
-        this.onChange(data);
-      });
+    if (this.attachedFormGroup) {
+      if (this.attachedFormGroup.get(this.name) instanceof FormControl) {
+        this.subscription = this.attachedFormGroup.get(this.name).valueChanges.subscribe(data => {
+          this.onChange(data);
+        });
+      }
     }
   }
 
