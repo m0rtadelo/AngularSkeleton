@@ -1,4 +1,4 @@
-<div class="form-group" [formGroup]="attachedFormGroup.get(name)">
+<div *ngIf="visible" class="form-group" [formGroup]="attachedFormGroup.get(name)">
   <label for="lblInput{{name}}">{{title}}</label>
   <span *ngIf="required" style="color: red;"> *</span>
   <div class="row">

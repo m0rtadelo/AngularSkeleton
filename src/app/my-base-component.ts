@@ -17,6 +17,7 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   @Input() readOnly = false;
   @Input() maxLength: number;
   @Input() minLength: number;
+  @Input() visible = true;
   @Output() valueChange = new EventEmitter();
 
   public formControl = new FormControl();
