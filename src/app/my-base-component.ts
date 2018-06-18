@@ -39,7 +39,7 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   }
 
   public onChange(value) {
-    let data = {};
+    const data = {};
     data[this.name] = value;
     this.valueChange.emit(data);
   }

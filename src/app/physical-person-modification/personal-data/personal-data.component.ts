@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,6 @@ import { FormGroup } from '@angular/forms';
 })
 export class PersonalDataComponent implements OnInit {
   @Input() attachedFormGroup: FormGroup;
-  @Output() valueChange = new EventEmitter();
 
   constructor() { }
 
@@ -16,15 +15,6 @@ export class PersonalDataComponent implements OnInit {
   }
 
   public valueChanged(data) {
-    Object.keys(data).forEach(key => {
-      if (key === 'CAM_PFS_APE_1') {
-        if (!!!data['CAM_PFS_APE_1']) {
-          this.attachedFormGroup.get('CAM_PFS_APE_2').disable();
-        } else {
-          this.attachedFormGroup.get('CAM_PFS_APE_2').enable();
-        }
-      }
-    });
-    this.valueChange.emit(data);
+    console.log(data);
   }
 }
