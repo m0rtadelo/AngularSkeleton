@@ -15,6 +15,7 @@ You only need to define de component in the view and the library will create the
 View code:
 ```html
 <app-my-input 
+  [attachedFormGroup]="reactiveFormModel"
   [title]="'Name'" 
   [placeholder]="'Enter your name'" 
   [name]="'name'"
@@ -23,6 +24,7 @@ View code:
   [required]="true">
 </app-my-input>
 <app-my-input 
+  [attachedFormGroup]="reactiveFormModel"
   [title]="'Surname'" 
   [placeholder]="'Enter your surname'" 
   [name]="'surname'"
