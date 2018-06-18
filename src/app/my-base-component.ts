@@ -1,4 +1,4 @@
-import { Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -6,8 +6,9 @@ import {
   Validators,
   ControlValueAccessor
 } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
-export class MyBaseComponent implements OnInit {
+export class MyBaseComponent implements OnInit, OnDestroy {
   @Input() name: string;
   @Input() title: string;
   @Input() placeholder: string;
@@ -20,16 +21,21 @@ export class MyBaseComponent implements OnInit {
 
   public formControl = new FormControl();
   protected validators = [];
+  private subscription;
 
   constructor() {}
 
   ngOnInit() {
     this.configure();
     if (this.attachedFormGroup.get(this.name) instanceof FormControl) {
-      this.attachedFormGroup.get(this.name).valueChanges.subscribe(data => {
+      this.subscription = this.attachedFormGroup.get(this.name).valueChanges.subscribe(data => {
         this.onChange(data);
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public onChange(value) {
