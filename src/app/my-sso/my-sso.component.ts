@@ -62,7 +62,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   }
 
   public onChange() {
-    let data = {};
+    const data = {};
     data[this.name] = this.attachedFormGroup.get(this.name).value;
     this.valueChange.emit(data);
   }
