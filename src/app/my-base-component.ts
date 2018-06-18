@@ -85,11 +85,13 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   }
 
   public createModel() {
-    if (!this.attachedFormGroup.contains(this.name)) {
-      this.attachedFormGroup.addControl(
-        this.name,
-        new FormControl(null, this.validators)
-      );
+    if (this.attachedFormGroup) {
+      if (!this.attachedFormGroup.contains(this.name)) {
+        this.attachedFormGroup.addControl(
+          this.name,
+          new FormControl(null, this.validators)
+        );
+      }
     }
   }
 }
