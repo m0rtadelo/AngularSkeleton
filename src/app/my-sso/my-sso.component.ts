@@ -50,6 +50,9 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   }
 
   public hasFocus() {
+    if (!!!this.pro) {
+      return false;
+    }
     return ((this.dig.nativeElement === document.activeElement)
     || (this.num.nativeElement === document.activeElement)
     || (this.pro.nativeElement === document.activeElement));
