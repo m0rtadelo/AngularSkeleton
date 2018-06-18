@@ -51,43 +51,6 @@ export class MyBaseProcess implements OnInit {
     this.modelForm.markAsPristine();
   }
 
-  public adaptModelValues(model: FormGroup | FormControl, values) {
-    this.adaptValues(model, values);
-    this.adaptModel(model, values);
-  }
-
-  private adaptModel(model: FormGroup | FormControl, values) {
-    // Adding keys to value from model
-    // model.getRawValue();
-    const group = <FormGroup> model;
-    Object.keys(group.getRawValue()).forEach(control => {
-      if (model.get(control) instanceof FormGroup) {
-        if (values[control] === undefined) {
-          values[control] = model.value[control];
-        }
-        this.adaptModel(<FormGroup>model.get(control), values[control]);
-      }
-      if (model.get(control) instanceof FormControl) {
-        if (values[control] === undefined) {
-          values[control] = '';
-        }
-      }
-    });
-  }
-
-  private adaptValues(model: FormGroup | FormControl, values ) {
-    // Deleting values that not exists in model
-    Object.keys(values).forEach(key => {
-      if (typeof values[key] === 'object') {
-        this.adaptValues(<FormGroup>model.get(key), values[key]);
-      } else {
-        if (model.get(key) === null) {
-          delete values[key];
-        }
-      }
-    });
-  }
-
   private touchAll() {
     this.markFormGroupTouched(this.modelForm);
   }

@@ -33,6 +33,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
         // CAM_PFS_APE_2: NOT DEFINED. ERROR?
         CAM_PFS_EDAT: '69',
         CAM_PFS_IEXISTENT: 'MUST IGNORE THIS FIELD. ERROR?',
+        CAM_GROUP_INEXISTENT: { SOME: 'THING'},
         CAM_PFS_SSO: { PRO: '12', NUM: '99999999', DIG: '21' }
         // CAM_PFS_SSO2: NOT DEFINED. ERROR?
       },
@@ -42,8 +43,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
         CAM_PFS_PAI_RES: 'Catalunya',
       }
     };
-    this.adaptModelValues(this.modelForm, value);
-    this.modelForm.setValue(value);
+    this.modelForm.patchValue(value);
 
     this.modelOriginal = this.modelForm.getRawValue();
     this.untouch();
