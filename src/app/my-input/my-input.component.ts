@@ -16,12 +16,15 @@ export class MyInputComponent extends MyBaseComponent implements OnInit {
 
   ngOnInit() {
     super.ngOnInit();
-    if (this.size) {
+    if (this.size && this.input) {
       this.input.nativeElement.size = this.size;
     }
   }
 
   public hasFocus() {
+    if (!this.input) {
+      return false;
+    }
     return (this.input.nativeElement === document.activeElement);
   }
 
