@@ -1,27 +1,43 @@
-# AngularSkeleton
+# DynamicReactiveForms
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+POC of DynamicReactiveForms that allows, fast and agile, creation of views. You don't need to create the model or validators, this solutions does for you.
 
-## Code scaffolding
+## How it works
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You only need to define de component in the view and the library will create the validators, the model, etc.
 
-## Build
+## Example
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+View code:
+```html
+<app-my-input 
+  [title]="'Name'" 
+  [placeholder]="'Enter your name'" 
+  [name]="'name'"
+  [minLength]="2"
+  [maxLength]="15"
+  [required]="true">
+</app-my-input>
+<app-my-input 
+  [title]="'Surname'" 
+  [placeholder]="'Enter your surname'" 
+  [name]="'surname'"
+  [maxLength]="15"
+  [readOnly]="!!!attachedFormGroup.get('name').value">
+</app-my-input>
+```
+With this definition the Name input will have validators to be required and between 2 and 15 characters.
+The Surname input will remain disabled until name is not void and will be limited to 15 characters.
 
-## Running unit tests
+Generated Model:
+```json
+{
+  'name':'valueName',
+  'surname':'valueSurname',
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
