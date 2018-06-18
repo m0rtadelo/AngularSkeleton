@@ -26,7 +26,7 @@
   </div>
   <div class="col">
       <app-my-input [title]="'Especial'" [placeholder]="'Introduir patata'" [name]="'CAM_PATATA'" [attachedFormGroup]="attachedFormGroup"
-        [required]="true" (valueChange)="valueChanged($event)" [visible]="!!attachedFormGroup.get('CAM_PFS_EDAT').value"></app-my-input>
+        [required]="false" (valueChange)="valueChanged($event)" [visible]="!!attachedFormGroup.get('CAM_PFS_EDAT').value"></app-my-input>
     </div>
 
 </div>
