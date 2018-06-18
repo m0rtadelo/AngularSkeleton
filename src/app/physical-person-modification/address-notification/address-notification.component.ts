@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,13 +8,14 @@ import { FormGroup } from '@angular/forms';
 })
 export class AddressNotificationComponent implements OnInit {
   @Input() attachedFormGroup: FormGroup;
+  @Output() valueChange = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  public valueChange(data) {
+  public valueChanged(data) {
     Object.keys(data).forEach(key => {
       if (key === 'CAM_PFS_PRO_RES') {
         if (!!!data['CAM_PFS_PRO_RES']) {
@@ -31,5 +32,6 @@ export class AddressNotificationComponent implements OnInit {
         }
       }
     });
+    this.valueChange.emit(data);
   }
 }

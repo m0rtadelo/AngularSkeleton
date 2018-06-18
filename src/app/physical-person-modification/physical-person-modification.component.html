@@ -4,10 +4,11 @@
       <app-personal-data [attachedFormGroup]="modelForm.get('personalData')" (valueChange)="valueChanged($event)"></app-personal-data>
     </tab>
     <tab heading="Domicili Notificació">
-      <app-address-notification [attachedFormGroup]="modelForm.get('addressNotification')"></app-address-notification>
+      <app-address-notification [attachedFormGroup]="modelForm.get('addressNotification')" (valueChange)="valueChanged($event)"></app-address-notification>
     </tab>
     <tab *ngIf="this.modelForm.get('personalData').get('CAM_PATATA')?.value === 'patata'" heading="Especial">
         <h1>ESPECIAL TAB</h1>
+        <img src="http://cabrasespartanas.com/archivos/uploads/2017/04/Matem%C3%A1ticas-aaplicadas-a-Chuck-Norris.jpg" width="425" height="418" >
       </tab>
     </tabset>
   <div style="position: relative; float: right; top: 20px;">
