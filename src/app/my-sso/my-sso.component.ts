@@ -17,16 +17,20 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   }
 
   public createModel() {
-    this.validators.push(this.SSOValidator);
-    if (this.required) {
-      this.validators.push(this.requiredValidator);
-    }
+    this.addValidators();
     if (!this.attachedFormGroup.contains(this.name)) {
       this.attachedFormGroup.addControl(this.name, new FormGroup({
         PRO: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
         NUM: new FormControl(null, [Validators.maxLength(8), Validators.minLength(8)]),
         DIG: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
       }, this.validators));
+    }
+  }
+
+  private addValidators() {
+    this.validators.push(this.SSOValidator);
+    if (this.required) {
+      this.validators.push(this.requiredValidator);
     }
   }
 
