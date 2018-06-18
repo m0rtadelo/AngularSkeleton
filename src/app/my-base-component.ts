@@ -67,13 +67,13 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   }
 
   private setValidatorMinLength() {
-    if (this.minLength) {
+    if (!isNaN(this.minLength)) {
       this.validators.push(Validators.minLength(this.minLength));
     }
   }
 
   private setValidatorMaxLength() {
-    if (this.maxLength) {
+    if (!isNaN(this.maxLength)) {
       this.validators.push(Validators.maxLength(this.maxLength));
     }
   }
