@@ -19,5 +19,8 @@
     <div class="col">
       <app-my-input (valueChange)="valueChanged($event)" [title]="'Municipi'" [maxLength]="20" [placeholder]="'Introduir Municipi'" [name]="'CAM_PFS_MUN_RES'" [attachedFormGroup]="attachedFormGroup"></app-my-input>
     </div>
-  </div>
+    <div class="col">
+        <app-my-input (valueChange)="valueChanged($event)" [title]="'Codigo postal'" [maxLength]="5" [placeholder]="'Introduir CP'" [name]="'CAM_PFS_CP'" [required]="true" [attachedFormGroup]="attachedFormGroup"></app-my-input>
+      </div>
+    </div>
 </form>
