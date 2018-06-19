@@ -9,6 +9,7 @@ import { BindingModule } from './binding/binding.module';
 import { BindingService } from './binding/binding.service';
 // import { AtxTooltipModule, AtxRateModule } from '@atx/material';
 import { PhysicalPersonModificationModule } from './physical-person-modification/physical-person-modification.module';
+import { ReduxFormsModule } from './redux-forms/redux-forms.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PhysicalPersonModificationModule } from './physical-person-modification
   imports: [
     BrowserModule,
     BindingModule,
+    ReduxFormsModule,
     // AtxTooltipModule,
     // AtxRateModule,
     PhysicalPersonModificationModule,
