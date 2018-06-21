@@ -11,7 +11,6 @@ export class MyBaseProcess implements OnInit {
   public saveModel(): void {
     if (this.modelForm.status !== 'VALID') {
       this.touchAll();
-      alert('Validation errors detected!\nErrors must be fixed.');
     } else {
       console.log(this.modelForm.value);
       this.modelOriginal = this.modelForm.getRawValue();

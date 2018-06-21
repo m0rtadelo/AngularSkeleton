@@ -13,18 +13,29 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() placeholder: string;
   @Input() attachedFormGroup: FormGroup;
-  @Input() required = false;
   @Input() readOnly = false;
+  @Input() visible = true;
   @Input() maxLength: number;
   @Input() minLength: number;
-  @Input() visible = true;
+  private _required = false;
   @Output() valueChange = new EventEmitter();
 
-  public formControl = new FormControl();
   protected validators = [];
   private subscription;
 
   constructor() {}
+
+  @Input() public set required(value: boolean ) {
+    this._required = value;
+    if (this.attachedFormGroup && this.attachedFormGroup.contains(this.name)) {
+      this.setValidators();
+      this.attachedFormGroup.controls[this.name].setValidators(this.validators);
+      this.attachedFormGroup.controls[this.name].updateValueAndValidity();
+    }
+  }
+  public get required(): boolean {
+    return this._required;
+  }
 
   ngOnInit() {
     this.configure();
@@ -82,7 +93,7 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   }
 
   private setValidatorRequired() {
-    if (this.required) {
+    if (this._required) {
       this.validators.push(Validators.required);
     }
   }
