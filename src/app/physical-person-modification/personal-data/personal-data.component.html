@@ -5,11 +5,11 @@
   </div>
   <div class="col">
     <app-my-input [title]="'Primer cognom'" [placeholder]="'Introduir primer cognom'" [name]="'CAM_PFS_APE_1'" [attachedFormGroup]="attachedFormGroup"
-      [required]="true" (valueChange)="valueChanged($event)" [readOnly]="!!!attachedFormGroup.get('CAM_PFS_NOM').value"></app-my-input>
+      [required]="!!attachedFormGroup.get('CAM_PFS_NOM').value" (valueChange)="valueChanged($event)" [readOnly]="!!!attachedFormGroup.get('CAM_PFS_NOM').value"></app-my-input>
   </div>
   <div class="col">
     <app-my-input [title]="'Segon cognom'" [placeholder]="'Introduir segon cognom'" [name]="'CAM_PFS_APE_2'" [attachedFormGroup]="attachedFormGroup"
-    [readOnly]="!!!attachedFormGroup.get('CAM_PFS_APE_1').value"></app-my-input>
+    [readOnly]="!!!attachedFormGroup.get('CAM_PFS_APE_1').value" [required]="!!special.visible" ></app-my-input>
   </div>
 </div>
 <div class="row">
@@ -25,8 +25,8 @@
       [required]="true" (valueChange)="valueChanged($event)"></app-my-sso>
   </div>
   <div class="col">
-      <app-my-input [title]="'Especial'" [placeholder]="'Introduir patata'" [name]="'CAM_PATATA'" [attachedFormGroup]="attachedFormGroup"
-        [required]="false" (valueChange)="valueChanged($event)" [visible]="!!attachedFormGroup.get('CAM_PFS_EDAT').value"></app-my-input>
+      <app-my-input #special [title]="'Especial'" [placeholder]="'Introduir patata'" [name]="'CAM_PATATA'" [attachedFormGroup]="attachedFormGroup"
+        (valueChange)="valueChanged($event)" [visible]="!!attachedFormGroup.get('CAM_PFS_EDAT').value"></app-my-input>
     </div>
 
 </div>
