@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MyFormGroup } from '../../myFormGroup';
 
 @Component({
   selector: 'app-address-notification',
@@ -7,7 +8,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./address-notification.component.css']
 })
 export class AddressNotificationComponent implements OnInit {
-  @Input() attachedFormGroup: FormGroup;
+  @Input() attachedFormGroup: MyFormGroup;
 
   constructor() { }
 

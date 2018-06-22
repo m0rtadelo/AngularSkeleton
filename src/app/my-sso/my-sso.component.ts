@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MyBaseComponent } from '../my-base-component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MyFormGroup } from '../myFormGroup';
 
 @Component({
   selector: 'app-my-sso',
@@ -19,7 +20,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
   public createModel() {
     this.addValidators();
     if (!this.attachedFormGroup.contains(this.name)) {
-      this.attachedFormGroup.addControl(this.name, new FormGroup({
+      this.attachedFormGroup.addControl(this.name, new MyFormGroup({
         PRO: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
         NUM: new FormControl(null, [Validators.maxLength(8), Validators.minLength(8)]),
         DIG: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
@@ -34,7 +35,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
     }
   }
 
-  private SSOValidator(g: FormGroup) {
+  private SSOValidator(g: MyFormGroup) {
     if (!!!g.get('PRO').value || !!!g.get('NUM').value || !!!g.get('DIG').value) {
       return null;
     }
@@ -42,7 +43,7 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
        ? null : {'incorrect': {'must_be': '12 99999999 12'}};
   }
 
-  private requiredValidator(g: FormGroup) {
+  private requiredValidator(g: MyFormGroup) {
     return ((g.get('PRO').value === '' || g.get('PRO').value === null )
     || (g.get('DIG').value === '' || g.get('DIG').value === null )
     || (g.get('NUM').value === '' || g.get('NUM').value === null))

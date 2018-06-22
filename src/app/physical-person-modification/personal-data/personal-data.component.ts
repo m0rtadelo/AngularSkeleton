@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MyFormGroup } from '../../myFormGroup';
 
 @Component({
   selector: 'app-personal-data',
@@ -7,7 +8,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./personal-data.component.css']
 })
 export class PersonalDataComponent implements OnInit {
-  @Input() attachedFormGroup: FormGroup;
+  @Input() attachedFormGroup: MyFormGroup;
 
   constructor() { }
 

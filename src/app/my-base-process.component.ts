@@ -1,8 +1,9 @@
 import { OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MyFormGroup } from './myFormGroup';
 
 export class MyBaseProcess implements OnInit {
-  public modelForm: FormGroup;
+  public modelForm: MyFormGroup;
   public modelOriginal;
 
   ngOnInit(): void {
@@ -10,7 +11,7 @@ export class MyBaseProcess implements OnInit {
 
   public saveModel(): void {
     if (this.modelForm.status !== 'VALID') {
-      this.touchAll();
+      this.modelForm.markFormGroupTouched(undefined);
     } else {
       console.log(this.modelForm.value);
       this.modelOriginal = this.modelForm.getRawValue();
@@ -19,11 +20,16 @@ export class MyBaseProcess implements OnInit {
     }
   }
 
-  public cancel(): void {
+  private confirmDirty(): boolean {
     if (this.modelForm.dirty) {
-      alert('You have unsaved changes. Are you sure you want to cancel/leave?');
-    } else {
-      alert('No changes detected, you can leave!');
+      return confirm('You have unsaved changes. Are you sure you want to lost changes?');
+    }
+    return true;
+  }
+
+  public cancel(): void {
+    if (this.confirmDirty()) {
+      alert('Nothing to do');
     }
   }
 
@@ -40,8 +46,8 @@ export class MyBaseProcess implements OnInit {
   }
 
   public showModel(): void {
-    console.log(this.modelOriginal);
-    console.log(this.modelForm.getRawValue());
+    // console.log(this.modelOriginal);
+    // console.log(this.modelForm.getRawValue());
     console.log(this.modelForm);
   }
 
@@ -49,20 +55,4 @@ export class MyBaseProcess implements OnInit {
     this.modelForm.markAsUntouched();
     this.modelForm.markAsPristine();
   }
-
-  private touchAll() {
-    this.markFormGroupTouched(this.modelForm);
-  }
-
-  private markFormGroupTouched(formGroup: FormGroup) {
-    (<any>Object).values(formGroup.controls).forEach(control => {
-      if (control.controls) {
-        this.markFormGroupTouched(control);
-      } else {
-        control.markAsTouched();
-      }
-    });
-   }
 }
-
-

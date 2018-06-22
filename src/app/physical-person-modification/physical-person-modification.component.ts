@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MyBaseProcess } from '../my-base-process.component';
-
+import { MyFormGroup } from '../myFormGroup';
 @Component({
   selector: 'app-physical-person-modification',
   templateUrl: './physical-person-modification.component.html',
@@ -15,9 +15,9 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
 
   ngOnInit() {
     super.ngOnInit();
-    this.modelForm = new FormGroup({
-      personalData: new FormGroup({}),
-      addressNotification: new FormGroup({})
+    this.modelForm = new MyFormGroup({
+      personalData: new MyFormGroup({}),
+      addressNotification: new MyFormGroup({})
     });
   }
 

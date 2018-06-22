@@ -12,4 +12,16 @@ export class MyFormGroup extends FormGroup {
     return result;
   }
 
+  public markFormGroupTouched(formGroup: MyFormGroup | void) {
+    if (!!!formGroup) {
+      formGroup = this;
+    }
+    (<any>Object).values((<MyFormGroup>formGroup).controls).forEach(control => {
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      } else {
+        control.markAsTouched();
+      }
+    });
+   }
 }

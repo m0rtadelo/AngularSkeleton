@@ -7,12 +7,13 @@ import {
   ControlValueAccessor
 } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { MyFormGroup } from './myFormGroup';
 
 export class MyBaseComponent implements OnInit, OnDestroy {
   @Input() name: string;
   @Input() title: string;
   @Input() placeholder: string;
-  @Input() attachedFormGroup: FormGroup;
+  @Input() attachedFormGroup: MyFormGroup;
   @Input() readOnly = false;
   @Input() visible = true;
   @Input() maxLength: number;
