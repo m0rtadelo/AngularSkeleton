@@ -25,19 +25,6 @@ export class MyBaseComponent implements OnInit, OnDestroy, OnChanges {
   private subscription;
 
   constructor() {}
-/*
-  @Input() public set _required(value: boolean ) {
-    this._required = value;
-    if (this.attachedFormGroup && this.attachedFormGroup.contains(this.name)) {
-      this.setValidators();
-      this.attachedFormGroup.controls[this.name].setValidators(this.validators);
-      this.attachedFormGroup.controls[this.name].updateValueAndValidity();
-    }
-  }
-  public get _required(): boolean {
-    return this._required;
-  }
-*/
   ngOnInit() {
     this.configure();
     if (this.attachedFormGroup) {
