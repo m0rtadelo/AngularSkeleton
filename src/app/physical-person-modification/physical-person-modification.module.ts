@@ -5,6 +5,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PersonalDataModule } from './personal-data/personal-data.module';
 import { AddressNotificationModule } from './address-notification/address-notification.module';
 import { GetPhysicalPersonService } from '../get-physical-person.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { GetPhysicalPersonService } from '../get-physical-person.service';
     TabsModule,
     PersonalDataModule,
     AddressNotificationModule,
+    HttpClientModule,
   ],
   declarations: [PhysicalPersonModificationComponent],
   providers: [GetPhysicalPersonService],

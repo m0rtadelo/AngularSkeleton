@@ -47,8 +47,8 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
     };
 */
     this.physicalPersonService.load().subscribe(data => {
-      console.log(data);
-      this.modelForm.patchValue(data);
+      this.modelForm.get('personalData').patchValue(data.data.infoPfs);
+      this.modelForm.get('addressNotification').patchValue(data.data.infoPfs);
       this.modelOriginal = this.modelForm.getRawValue();
       this.untouch();
     });
