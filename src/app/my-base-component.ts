@@ -1,4 +1,4 @@
-import { Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Input, OnInit, Output, EventEmitter, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 
-export class MyBaseComponent implements OnInit, OnDestroy {
+export class MyBaseComponent implements OnInit, OnDestroy, OnChanges {
   @Input() name: string;
   @Input() title: string;
   @Input() placeholder: string;
@@ -17,15 +17,16 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   @Input() visible = true;
   @Input() maxLength: number;
   @Input() minLength: number;
-  private _required = false;
+  //private _required = false;
+  @Input() required = false;
   @Output() valueChange = new EventEmitter();
 
   protected validators = [];
   private subscription;
 
   constructor() {}
-
-  @Input() public set required(value: boolean ) {
+/*
+  @Input() public set _required(value: boolean ) {
     this._required = value;
     if (this.attachedFormGroup && this.attachedFormGroup.contains(this.name)) {
       this.setValidators();
@@ -33,10 +34,10 @@ export class MyBaseComponent implements OnInit, OnDestroy {
       this.attachedFormGroup.controls[this.name].updateValueAndValidity();
     }
   }
-  public get required(): boolean {
+  public get _required(): boolean {
     return this._required;
   }
-
+*/
   ngOnInit() {
     this.configure();
     if (this.attachedFormGroup) {
@@ -51,6 +52,16 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.required) {
+      if (this.attachedFormGroup && this.attachedFormGroup.get(this.name)) {
+        this.setValidators();
+        this.attachedFormGroup.controls[this.name].setValidators(this.validators);
+        this.attachedFormGroup.controls[this.name].updateValueAndValidity();
+      }
     }
   }
 
@@ -93,7 +104,7 @@ export class MyBaseComponent implements OnInit, OnDestroy {
   }
 
   private setValidatorRequired() {
-    if (this._required) {
+    if (this.required) {
       this.validators.push(Validators.required);
     }
   }
