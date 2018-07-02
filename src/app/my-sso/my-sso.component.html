@@ -1,15 +1,15 @@
-<div *ngIf="visible" class="form-group" [formGroup]="attachedFormGroup.get(name)">
+<div *ngIf="visible" class="form-group" [formGroup]="attachedFormGroup//.get(name)">
   <label for="lblInput{{name}}">{{title}}</label>
   <span *ngIf="required" style="color: red;"> *</span>
   <div class="row">
     <div class="col-3">
-      <input #pro id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="'PRO'" maxlength="2"  (change)="onChange()">
+      <input #pro id="lblInput{{name}}_PRO" type="text" class="form-control" placeholder="nn" [formControlName]="namePro" maxlength="2"  (change)="onChange()">
     </div>
     <div class="col">
-      <input #num id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="'NUM'" maxlength="8"  (change)="onChange()">
+      <input #num id="lblInput{{name}}_NUM" type="text" class="form-control" placeholder="nnnnnnnn" [formControlName]="nameNum" maxlength="8"  (change)="onChange()">
     </div>
     <div class="col-3">
-      <input #dig id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="'DIG'" maxlength="2"  (change)="onChange()">
+      <input #dig id="lblInput{{name}}_DIG" type="text" class="form-control" placeholder="nn" [formControlName]="nameDig" maxlength="2"  (change)="onChange()">
     </div>
   </div>
   <small *ngIf="hasError() && !hasFocus() && (hasValue() || (required && isTouched()))" style="color: red;">{{ getError() | json }}</small>

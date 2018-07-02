@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class MyBaseProcess implements OnInit {
   public modelForm: FormGroup;
   public modelOriginal;
+  public dto;
 
   ngOnInit(): void {
   }
@@ -12,12 +13,15 @@ export class MyBaseProcess implements OnInit {
     if (this.modelForm.status !== 'VALID') {
       this.touchAll();
     } else {
-      console.log(this.modelForm.value);
+      this.modelToDto();
+      console.log(this.dto);
       this.modelOriginal = this.modelForm.getRawValue();
       this.untouch();
       alert('Data saved!');
     }
   }
+
+  public modelToDto() {}
 
   public cancel(): void {
     if (this.modelForm.dirty) {
@@ -40,9 +44,8 @@ export class MyBaseProcess implements OnInit {
   }
 
   public showModel(): void {
-    console.log(this.modelOriginal);
-    console.log(this.modelForm.getRawValue());
     console.log(this.modelForm);
+    console.log(this.dto);
   }
 
   public untouch() {

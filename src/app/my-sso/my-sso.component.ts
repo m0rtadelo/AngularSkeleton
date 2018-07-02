@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit, OnDestroy } from '@angular/core';
 import { MyBaseComponent } from '../my-base-component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,13 +7,39 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './my-sso.component.html',
   styleUrls: ['./my-sso.component.css']
 })
-export class MySsoComponent extends MyBaseComponent implements OnInit {
+export class MySsoComponent extends MyBaseComponent implements OnInit, OnDestroy {
   @ViewChild('pro') pro: ElementRef;
   @ViewChild('num') num: ElementRef;
   @ViewChild('dig') dig: ElementRef;
+  @Input() namePro: string;
+  @Input() nameNum: string;
+  @Input() nameDig: string;
+  private subsPro;
+  private subsNum;
+  private subsDig;
 
   constructor() {
     super();
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+    this.subsPro = this.attachedFormGroup.get(this.namePro).valueChanges.subscribe(value => {
+      this.setValues();
+    });
+    this.subsNum = this.attachedFormGroup.get(this.nameNum).valueChanges.subscribe(value => {
+      this.setValues();
+    });
+    this.subsDig = this.attachedFormGroup.get(this.nameDig).valueChanges.subscribe(value => {
+      this.setValues();
+    });
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.subsPro.unsubscribe();
+    this.subsDig.unsubscribe();
+    this.subsNum.unsubscribe();
   }
 
   public createModel() {
@@ -24,6 +50,9 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
         NUM: new FormControl(null, [Validators.maxLength(8), Validators.minLength(8)]),
         DIG: new FormControl(null, [Validators.maxLength(2), Validators.minLength(2)]),
       }, this.validators));
+      this.attachedFormGroup.addControl(this.namePro, new FormControl(null));
+      this.attachedFormGroup.addControl(this.nameNum, new FormControl(null));
+      this.attachedFormGroup.addControl(this.nameDig, new FormControl(null));
     }
   }
 
@@ -74,4 +103,9 @@ export class MySsoComponent extends MyBaseComponent implements OnInit {
     this.valueChange.emit(data);
   }
 
+  private setValues() {
+    this.attachedFormGroup.get(this.name).get('PRO').setValue(this.attachedFormGroup.get(this.namePro).value);
+    this.attachedFormGroup.get(this.name).get('NUM').setValue(this.attachedFormGroup.get(this.nameNum).value);
+    this.attachedFormGroup.get(this.name).get('DIG').setValue(this.attachedFormGroup.get(this.nameDig).value);
+  }
 }

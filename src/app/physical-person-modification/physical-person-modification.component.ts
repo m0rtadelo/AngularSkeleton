@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { MyBaseProcess } from '../my-base-process.component';
 import { GetPhysicalPersonService } from '../get-physical-person.service';
 
@@ -28,11 +28,23 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
 
   public loadModel(): void {
     this.physicalPersonService.load().subscribe(data => {
+      data.data.infoPfsOriginal = JSON.parse(JSON.stringify(data.data.infoPfs));
+      this.dto = data;
       Object.keys(this.modelForm.controls).forEach(model => {
         this.modelForm.get(model).patchValue(data.data.infoPfs);
       });
       this.modelOriginal = this.modelForm.getRawValue();
       this.untouch();
+    });
+  }
+
+  modelToDto() {
+    Object.keys(this.modelForm.controls).forEach(group => {
+      Object.keys((<FormGroup>this.modelForm.get(group)).controls).forEach(key => {
+        if (this.modelForm.get(group).get(key) instanceof FormControl) {
+          this.dto.data.infoPfs[key] = this.modelForm.get(group).get(key).value;
+        }
+      });
     });
   }
 }
