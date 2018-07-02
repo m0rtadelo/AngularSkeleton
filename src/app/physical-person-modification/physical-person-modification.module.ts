@@ -4,6 +4,7 @@ import { PhysicalPersonModificationComponent } from './physical-person-modificat
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { PersonalDataModule } from './personal-data/personal-data.module';
 import { AddressNotificationModule } from './address-notification/address-notification.module';
+import { GetPhysicalPersonService } from '../get-physical-person.service';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { AddressNotificationModule } from './address-notification/address-notifi
     AddressNotificationModule,
   ],
   declarations: [PhysicalPersonModificationComponent],
+  providers: [GetPhysicalPersonService],
   exports: [PhysicalPersonModificationComponent]
 })
 export class PhysicalPersonModificationModule { }

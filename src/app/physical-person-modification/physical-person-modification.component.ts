@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MyBaseProcess } from '../my-base-process.component';
+import { GetPhysicalPersonService } from '../get-physical-person.service';
 
 @Component({
   selector: 'app-physical-person-modification',
@@ -9,7 +10,7 @@ import { MyBaseProcess } from '../my-base-process.component';
 })
 export class PhysicalPersonModificationComponent extends MyBaseProcess implements OnInit, AfterViewInit {
   private especial = false;
-  constructor() {
+  constructor(private physicalPersonService: GetPhysicalPersonService ) {
     super();
   }
 
@@ -26,6 +27,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
   }
 
   public loadModel(): void {
+/*
     const value = {
       personalData: {
         CAM_PFS_NOM: 'Chuck',
@@ -43,9 +45,12 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
         CAM_PFS_PAI_RES: 'Catalunya',
       }
     };
-    this.modelForm.patchValue(value);
-
-    this.modelOriginal = this.modelForm.getRawValue();
-    this.untouch();
+*/
+    this.physicalPersonService.load().subscribe(data => {
+      console.log(data);
+      this.modelForm.patchValue(data);
+      this.modelOriginal = this.modelForm.getRawValue();
+      this.untouch();
+    });
   }
 }
