@@ -22,7 +22,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
   }
 
   ngAfterViewInit(): void {
-    this.clearModel();
+    this.loadModel();
   }
 
   public loadModel(): void {
