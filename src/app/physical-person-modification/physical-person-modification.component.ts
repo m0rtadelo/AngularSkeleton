@@ -28,7 +28,7 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
 
   public loadModel(): void {
     this.physicalPersonService.load().subscribe(data => {
-      data.data.infoPfsOriginal = JSON.parse(JSON.stringify(data.data.infoPfs));
+      data.data.infoPfsAnterior = JSON.parse(JSON.stringify(data.data.infoPfs));
       this.dto = data;
       Object.keys(this.modelForm.controls).forEach(model => {
         this.modelForm.get(model).patchValue(data.data.infoPfs);
