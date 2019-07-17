@@ -18,7 +18,8 @@ export class PhysicalPersonModificationComponent extends MyBaseProcess implement
     super.ngOnInit();
     this.modelForm = new FormGroup({
       personalData: new FormGroup({}),
-      addressNotification: new FormGroup({})
+      addressNotification: new FormGroup({}),
+      phones: new FormGroup({})
     });
   }
 
